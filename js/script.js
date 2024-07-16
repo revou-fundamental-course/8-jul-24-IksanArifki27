@@ -1,33 +1,30 @@
 const pria = document.querySelector("#pria");
 const wanita = document.querySelector("#wanita");
-const tinggi = parseInt(document.querySelector("#tinggi_badan").value);
-const berat = parseInt(document.querySelector("#berat_badan").value);
+const tinggi = parseFloat(document.querySelector("#tinggi_badan").value);
+const berat = parseFloat(document.querySelector("#berat_badan").value);
 const usia = parseInt(document.querySelector("#usia").value);
-const hasil = document.querySelector(".hasil");
+const hasilBMI = document.querySelector("#hasil-bmi");
+const hasilDeskripsi = document.querySelector("#hasil deskripsi");
 const keterangan = document.querySelector(".keterangan");
+const hasilDisplay = document.querySelector(".hasil-display");
 
 const kalkulasi = () => {
-  const check = [tinggi, berat, usia];
-  if (pria.checked) {
-    check.push("pria");
-  } else if (wanita.checked) {
-    check.push("wanita");
-  }
+  let bmi = berat / ((tinggi * tinggi) / 100);
 
-  const bmi = (berat / ((tinggi * tinggi) / 10000)).toFixed(2);
-
-  var hasil = "";
+  let hasil = "";
   if (bmi < 18.5) {
-    hasil = "Kekurangan berat Badan";
+    hasilBMI.innerHTML = `${bmi}`;
+    hasil.innerHTML = "Kekurangan berat Badan";
   } else if (bmi >= 18.5 && bmi <= 24.9) {
-    hasil = "Normal (Ideal)";
+    hasilBMI.innerHTML = `${bmi}`;
+    hasil.innerHTML = "Normal (Ideal)";
   } else if (bmi >= 25.0 && bmi <= 29.9) {
-    hasil = "Kelebihan berat badan";
+    hasilBMI.innerHTML = `${bmi}`;
+    hasil.innerHTML = "Kelebihan berat badan";
   } else if (bmi >= 30.0) {
-    hasil = "kegemukan (obesitas)";
+    hasilBMI.innerHTML = `${bmi}`;
+    hasil.innerHTML = "Kegemukan (Obestias)";
   }
 
-  console.log("hasil hitung BMi" + bmi);
-  console.log(tinggi);
-  console.log("hasil keterangan BMi" + hasil);
+  hasilDisplay.style.display = "block";
 };
